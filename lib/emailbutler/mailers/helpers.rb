@@ -19,7 +19,8 @@ module Emailbutler
       end
 
       def build_emailbutler_message(args)
-        @message = Emailbutler.build_message(
+        @butler_message = Emailbutler.build_message(
+          message_id: headers.header.fields.detect { |field| field.name == "Message-ID" }.value,
           mailer: self.class.to_s,
           action: action_name,
           params: serialize({ mailer_params: params, action_params: args[1..] }, false)
@@ -27,8 +28,10 @@ module Emailbutler
       end
 
       def save_emailbutler_message
-        Emailbutler.set_message_attribute(@message, :send_to, mail.to)
-        Emailbutler.save_message(@message)
+        message_id = headers.header.fields.detect { |field| field.name == "Message-ID" }.value
+        Emailbutler.set_message_attribute(@butler_message, :uuid, message_id)
+        Emailbutler.set_message_attribute(@butler_message, :send_to, mail.to)
+        Emailbutler.save_message(@butler_message)
       end
     end
   end

@@ -50,7 +50,7 @@ module Emailbutler
       end
 
       # Public: Sets attribute with value for the message.
-      def set_message_attribute(message, attribute, value)
+      def set_message_attribute(message, attribute, value, message_id)
         message[attribute] = value
       end
 
