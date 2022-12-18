@@ -2,8 +2,6 @@
 
 module Emailbutler
   class WebhooksController < Emailbutler::ApplicationController
-    skip_before_action :verify_authenticity_token if defined?(:verify_authenticity_token)
-
     def create
       ::Emailbutler::Webhooks::Receiver.call(
         user_agent: request.headers['HTTP_USER_AGENT'],
