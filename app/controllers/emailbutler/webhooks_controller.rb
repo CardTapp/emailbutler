@@ -2,6 +2,9 @@
 
 module Emailbutler
   class WebhooksController < Emailbutler::ApplicationController
+    protect_from_forgery with: :exception
+    skip_before_action :verify_authenticity_token
+
     def create
       ::Emailbutler::Webhooks::Receiver.call(
         user_agent: request.headers['HTTP_USER_AGENT'],
