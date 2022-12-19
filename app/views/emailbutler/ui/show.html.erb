@@ -21,7 +21,7 @@
     <table cellspacing="0">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Date</th>
           <th>Mailer</th>
           <th>Action</th>
           <th>Send to</th>
@@ -36,7 +36,7 @@
       <tbody>
         <% @messages.each do |message| %>
           <tr>
-            <td><%= message.id %></td>
+            <td><%= message.created_at.to_formatted_s(:short) %></td>
             <td><%= message.mailer %></td>
             <td><%= message.action %></td>
             <td>
