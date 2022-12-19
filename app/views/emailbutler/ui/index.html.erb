@@ -10,7 +10,7 @@
       <li>
         <%= link_to ui_path(value), class: 'status-summary' do %>
           <span><%= key %></span>
-          <span><%= value %></span>
+          <span><%= @summary[value] %></span>
         <% end %>
       </li>
     <% end %>
