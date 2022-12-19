@@ -20,7 +20,6 @@ module Emailbutler
 
       def build_emailbutler_message(args)
         @butler_message = Emailbutler.build_message(
-          message_id: headers.header.fields.detect { |field| field.name == "Message-ID" }.value,
           mailer: self.class.to_s,
           action: action_name,
           params: serialize({ mailer_params: params, action_params: args[1..] }, false)
