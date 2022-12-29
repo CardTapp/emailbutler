@@ -27,7 +27,7 @@ module Emailbutler
       end
 
       def save_emailbutler_message
-        message_id = headers.header.fields.detect { |field| field.name == "Message-ID" }.value
+        message_id = headers.header.fields.detect { |field| field.name == "Message-ID" }&.value
         Emailbutler.set_message_attribute(@butler_message, :uuid, message_id)
         Emailbutler.set_message_attribute(@butler_message, :send_to, mail.to)
         Emailbutler.save_message(@butler_message)
